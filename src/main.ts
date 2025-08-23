@@ -7,6 +7,7 @@ import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { TransformInterceptor } from './core/transform.interceptor';
+import cookieParser from 'cookie-parser';
 require('dotenv').config();
 
 async function bootstrap() {
@@ -29,6 +30,8 @@ async function bootstrap() {
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false
   })
+
+  app.use(cookieParser());
 
   // config versioning
   app.setGlobalPrefix('api');
